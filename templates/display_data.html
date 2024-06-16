@@ -6,14 +6,14 @@
 </head>
 <body>
     <h1>Received Data</h1>
-    13.228.225.19
+    {% comment %} 13.228.225.19
 18.142.128.26
-54.254.162.138
+54.254.162.138 {% endcomment %}
     <ul>
         {% for item in data %}
             <li><strong>{{ item.sender }}</strong>: {{ item.message }} ({{ item.timestamp }})</li>
         {% endfor %}
     </ul>
-    <a href="{% url test_connection %}">Test</a>
+    {% comment %} <a href="{% test_connection %}">Test</a> {% endcomment %}
 </body>
 </html>
