@@ -1,0 +1,15 @@
+<!-- display_data.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Display</title>
+</head>
+<body>
+    <h1>Received Data</h1>
+    <ul>
+        {% for item in data %}
+            <li><strong>{{ item.sender }}</strong>: {{ item.message }} ({{ item.timestamp }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
