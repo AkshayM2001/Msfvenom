@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('receive_data/', views.receive_data, name='receive_data'),
-    path('display_data/', views.display_data, name='display_data'),
+    path('', views.display_data, name='display_data'),
     path('test_connection/', views.test_connection, name='test_connection'),
 ]
