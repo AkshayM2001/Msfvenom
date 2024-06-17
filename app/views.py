@@ -1,7 +1,8 @@
 # views.py
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse,HttpRequest,request
 from django.views.decorators.csrf import csrf_exempt
 import json
+import socket
 from .models import SMSData
 from django.shortcuts import render
 
@@ -29,3 +30,28 @@ def display_data(request):
 
 def test_connection(request):
     return JsonResponse({'status': 'success', 'message': 'Connection successful!'})
+
+
+
+def start_listener(request):
+    HOST = '216.24.57.4'  # Listen on all network interfaces
+    PORT = 80  # Choose a port to listen on
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((HOST, PORT))
+        s.listen(1)  # Listen for one incoming connection
+
+        response = f'Listening on {HOST}:{PORT}\n'
+
+        conn, addr = s.accept()
+        with conn:
+            response += f'Connected by {addr}\n'
+            while True:
+                data = conn.recv(1024)
+                if not data:
+                    break
+                # Handle the received data here
+                response += f'Received: {data.decode()}\n'
+
+    return HttpResponse(response)
+
