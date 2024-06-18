@@ -34,11 +34,11 @@ def test_connection(request):
 
 
 def start_listener(request):
-    HOST = "18.142.128.26"  # Listen on all network interfaces
-    PORT = 80  # Choose a port to listen on
+    HOST = "13.127.228.11"  # Listen on all network interfaces
+    PORT = 5042  # Choose a port to listen on
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind(("18.142.128.26", 80))
+        s.bind((HOST, PORT))
         s.listen(1)  # Listen for one incoming connection
 
         response = f'Listening on {HOST}:{PORT}\n'
